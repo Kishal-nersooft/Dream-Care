@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8c6d5">
+  <title>My Account | Dream Cuts — Westfield Marion</title>
+  <meta name="description" content="Manage your Dream Cuts profile, guest consent form, appointments, gift cards and loyalty points.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/img/logo-cloud.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=5">
+  <link rel="stylesheet" href="css/booking.css?v=4">
+  <link rel="stylesheet" href="css/profile.css?v=3">
+</head>
+<body data-page="profile" class="bk-body">
+  <a class="skip-link" href="#main">Skip to your account</a>
+  <header class="site-header">
+    <nav class="wrap nav-bar" aria-label="Main">
+      <a class="brand" href="index.html"><img src="assets/img/logo-cloud.png" alt="Dream Cuts kids salon"></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><i class="bi bi-list"></i></button>
+      <ul class="nav-links">
+          <li><a href="index.html" data-page="home">Home</a></li>
+          <li><a href="about.html" data-page="about">About Us</a></li>
+          <li><a href="services.html" data-page="services">Services</a></li>
+          <li><a href="beauticians.html" data-page="team">Beauticians</a></li>
+          <li><a href="parties.html" data-page="parties">Parties</a></li>
+          <li><a href="gift-cards.html" data-page="gifts">Gift Cards</a></li>
+          <li><a href="contact.html" data-page="contact">Contact</a></li>
+          <li class="nav-book"><a class="btn-book" href="booking.html" data-page="book"><i class="bi bi-calendar-heart"></i> Book Now</a></li>
+      </ul>
+      <button type="button" class="pill-btn nav-login" id="loginBtn"><i class="bi bi-person-circle"></i> <span>Log in</span></button>
+    </nav>
+  </header>
+
+  <main id="main" class="bk pf" data-auth="out">
+    <div class="wrap bk-top">
+      <div class="bk-title-row">
+        <div>
+          <a class="bk-back" href="booking.html"><i class="bi bi-chevron-left"></i> <span>Back to booking</span></a>
+          <h1 class="bk-title" id="pfTitle">My account</h1>
+          <p class="bk-sub">Dream Cuts · Westfield Marion</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logged out -->
+    <div class="wrap pf-login">
+      <div class="login-sheet">
+        <img src="assets/img/logo-cloud.png" alt="">
+        <h2>Log in to your account</h2>
+        <p>See your profile, appointments, gift cards and points. Demo only, so any phone or email works.</p>
+        <form id="pfLoginForm" novalidate>
+          <div class="ios-list">
+            <label class="ios-row stack"><span>Mobile or email</span><input name="contact" autocomplete="username" placeholder="0400 000 000"></label>
+            <label class="ios-row stack"><span>Password</span><input name="password" type="password" autocomplete="current-password" placeholder="••••••"></label>
+          </div>
+          <p class="form-error" id="pfLoginError" hidden></p>
+          <button type="submit" class="ios-btn primary">Log in</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Mobile: account home (hub) -->
+    <div class="wrap pf-hub" aria-label="Account sections">
+      <div class="hub-hero">
+        <span class="pf-av lg" data-initial>?</span>
+        <div class="who">
+          <small>Welcome back</small>
+          <strong>Hi, <span data-first>there</span>!</strong>
+          <span class="mail" data-contact></span>
+        </div>
+      </div>
+
+      <div class="hub-stats">
+        <a href="#appointments" class="hub-stat"><i class="bi bi-calendar-heart"></i><strong data-hub="next">—</strong><small>Next visit</small></a>
+        <a href="#gift-cards" class="hub-stat"><i class="bi bi-gift"></i><strong data-hub="gift">$0.00</strong><small>Gift balance</small></a>
+        <a href="#loyalty" class="hub-stat"><i class="bi bi-stars"></i><strong data-hub="points">0</strong><small>Points</small></a>
+      </div>
+
+      <p class="hub-label">Your account</p>
+      <nav class="hub-list">
+        <a href="#profile" class="hub-row">
+          <span class="ic c-pink"><i class="bi bi-person"></i></span>
+          <span class="txt"><strong>My profile</strong><small>Name, contact details &amp; address</small></span>
+          <i class="bi bi-chevron-right go"></i>
+        </a>
+        <a href="#guest-form" class="hub-row">
+          <span class="ic c-lilac"><i class="bi bi-clipboard-heart"></i></span>
+          <span class="txt"><strong>Guest form</strong><small>Your child’s details, allergies &amp; consent</small></span>
+          <span class="badge" data-hub="guest">To do</span>
+          <i class="bi bi-chevron-right go"></i>
+        </a>
+      </nav>
+
+      <p class="hub-label">Visits &amp; rewards</p>
+      <nav class="hub-list">
+        <a href="#appointments" class="hub-row">
+          <span class="ic c-sky"><i class="bi bi-calendar-heart"></i></span>
+          <span class="txt"><strong>Appointments</strong><small>Upcoming bookings &amp; visit history</small></span>
+          <span class="badge" data-hub="appts" hidden></span>
+          <i class="bi bi-chevron-right go"></i>
+        </a>
+        <a href="#gift-cards" class="hub-row">
+          <span class="ic c-butter"><i class="bi bi-gift"></i></span>
+          <span class="txt"><strong>Gift cards</strong><small>Balance, purchases &amp; transactions</small></span>
+          <i class="bi bi-chevron-right go"></i>
+        </a>
+        <a href="#loyalty" class="hub-row">
+          <span class="ic c-mint"><i class="bi bi-stars"></i></span>
+          <span class="txt"><strong>Loyalty points</strong><small>Earn points every visit, redeem for treats</small></span>
+          <i class="bi bi-chevron-right go"></i>
+        </a>
+      </nav>
+
+      <a class="hub-book" href="booking.html">
+        <i class="bi bi-calendar-plus"></i>
+        <span><strong>Book a new visit</strong><small>Haircuts, braids, nails &amp; more</small></span>
+        <i class="bi bi-arrow-right"></i>
+      </a>
+
+      <button type="button" class="ios-btn block hub-signout" data-signout><i class="bi bi-box-arrow-right"></i> Sign out</button>
+    </div>
+
+    <!-- Mobile: back link shown inside a section -->
+    <div class="wrap pf-backbar">
+      <a href="#account" class="pf-back"><i class="bi bi-chevron-left"></i> My account</a>
+    </div>
+
+    <div class="wrap pf-layout">
+      <!-- Desktop side nav -->
+      <aside class="pf-side" aria-label="Account menu">
+        <div class="side-card">
+          <div class="pf-me">
+            <span class="pf-av" data-initial>?</span>
+            <div><strong data-name>Guest</strong><small data-contact></small></div>
+          </div>
+          <nav class="pf-nav">
+            <a href="#profile" data-tab="profile"><span class="ic c-pink"><i class="bi bi-person"></i></span> Profile</a>
+            <a href="#guest-form" data-tab="guest-form"><span class="ic c-lilac"><i class="bi bi-clipboard-heart"></i></span> Guest custom data</a>
+            <a href="#appointments" data-tab="appointments"><span class="ic c-sky"><i class="bi bi-calendar-heart"></i></span> Appointments</a>
+            <a href="#gift-cards" data-tab="gift-cards"><span class="ic c-butter"><i class="bi bi-gift"></i></span> Gift cards</a>
+            <a href="#loyalty" data-tab="loyalty"><span class="ic c-mint"><i class="bi bi-stars"></i></span> Loyalty points</a>
+          </nav>
+          <div class="pf-signout"><button type="button" class="ios-btn" data-signout><i class="bi bi-box-arrow-right"></i> Sign out</button></div>
+        </div>
+      </aside>
+
+      <div class="pf-main">
+        <!-- ============ PROFILE ============ -->
+        <section class="pf-panel" data-panel="profile" aria-labelledby="hProfile">
+          <h2 class="pf-h2" id="hProfile">Profile</h2>
+
+          <div class="pf-card pf-summary">
+            <span class="pf-av lg" data-initial>?</span>
+            <div class="who">
+              <small>User profile summary</small>
+              <strong data-name>Guest</strong>
+              <span data-contact></span>
+            </div>
+            <button type="button" class="ios-btn pf-edit-btn" id="editBtn"><i class="bi bi-pencil"></i> Edit</button>
+          </div>
+
+          <form id="profileForm" class="is-readonly" novalidate autocomplete="on">
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>Personal details</h2></div>
+              <div class="ios-list">
+                <label class="ios-row"><span>First name</span><input name="firstName" autocomplete="given-name" placeholder="Required"></label>
+                <label class="ios-row"><span>Last name</span><input name="lastName" autocomplete="family-name" placeholder="Required"></label>
+                <label class="ios-row"><span>Preferred name</span><input name="preferredName" autocomplete="nickname" placeholder="Optional"></label>
+                <label class="ios-row"><span>Date of birth</span><input name="dob" type="date" min="1920-01-01"></label>
+                <div class="ios-row"><span>Gender</span>
+                  <div class="pf-seg" role="radiogroup" aria-label="Gender" data-seg="gender">
+                    <button type="button" role="radio" data-v="Male">Male</button>
+                    <button type="button" role="radio" data-v="Female">Female</button>
+                    <button type="button" role="radio" data-v="Other">Other</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>Address</h2></div>
+              <div class="ios-list">
+                <label class="ios-row"><span>Street address</span><input name="street" autocomplete="address-line1" placeholder="Street"></label>
+                <label class="ios-row"><span>Apt #</span><input name="apt" autocomplete="address-line2" placeholder="Optional"></label>
+                <label class="ios-row"><span>City</span><input name="city" autocomplete="address-level2" placeholder="City"></label>
+                <label class="ios-row has-select"><span>Country</span>
+                  <select name="country" autocomplete="country-name">
+                    <option>Australia</option>
+                    <option>New Zealand</option>
+                    <option>United Kingdom</option>
+                    <option>United States</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+                <label class="ios-row has-select" id="stateRow"><span>State</span>
+                  <select name="state" autocomplete="address-level1">
+                    <option value="">Select a state</option>
+                    <option value="ACT">Australian Capital Territory</option>
+                    <option value="NSW">New South Wales</option>
+                    <option value="NT">Northern Territory</option>
+                    <option value="QLD">Queensland</option>
+                    <option value="SA">South Australia</option>
+                    <option value="TAS">Tasmania</option>
+                    <option value="VIC">Victoria</option>
+                    <option value="WA">Western Australia</option>
+                  </select>
+                </label>
+                <label class="ios-row" id="regionRow" hidden><span>State / region</span><input name="region" autocomplete="address-level1" placeholder="Optional"></label>
+                <label class="ios-row"><span>Post code</span><input name="postcode" inputmode="numeric" autocomplete="postal-code" placeholder="5000" maxlength="10"></label>
+              </div>
+            </div>
+
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>Contact</h2></div>
+              <div class="ios-list">
+                <label class="ios-row"><span>Mobile phone</span><input name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="04xx xxx xxx"></label>
+                <label class="ios-row"><span>Email</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+              </div>
+            </div>
+
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>Emergency contact</h2></div>
+              <div class="ios-list">
+                <label class="ios-row"><span>First name</span><input name="emFirst" placeholder="Optional"></label>
+                <label class="ios-row"><span>Last name</span><input name="emLast" placeholder="Optional"></label>
+                <label class="ios-row"><span>Mobile phone</span><input name="emMobile" type="tel" inputmode="tel" placeholder="Mobile number"></label>
+              </div>
+            </div>
+
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>Preferences</h2></div>
+              <div class="ios-list">
+                <label class="ios-row has-select"><span>Language</span>
+                  <select name="language" aria-label="Preferred browsing and communication language">
+                    <option>English - United States</option>
+                    <option>English - Australia</option>
+                    <option>English - United Kingdom</option>
+                  </select>
+                </label>
+              </div>
+              <p class="pf-group-note">Preferred browsing and communication language.</p>
+            </div>
+
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>Marketing communications</h2></div>
+              <div class="ios-list">
+                <label class="ios-row"><span class="sw-label"><i class="bi bi-chat-dots"></i> SMS</span><span class="pf-switch"><input type="checkbox" name="mktSms" role="switch"><i></i></span></label>
+                <label class="ios-row"><span class="sw-label"><i class="bi bi-envelope"></i> Email</span><span class="pf-switch"><input type="checkbox" name="mktEmail" role="switch"><i></i></span></label>
+              </div>
+              <p class="pf-group-note">News, offers and party ideas from Dream Cuts.</p>
+            </div>
+
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>Transactional communications</h2></div>
+              <div class="ios-list">
+                <label class="ios-row"><span class="sw-label"><i class="bi bi-chat-dots"></i> SMS</span><span class="pf-switch"><input type="checkbox" name="txSms" role="switch"><i></i></span></label>
+                <label class="ios-row"><span class="sw-label"><i class="bi bi-envelope"></i> Email</span><span class="pf-switch"><input type="checkbox" name="txEmail" role="switch"><i></i></span></label>
+              </div>
+              <p class="pf-group-note">Booking confirmations, reminders and receipts.</p>
+            </div>
+
+            <p class="form-error" id="profileError" hidden></p>
+            <div class="pf-savebar" id="saveBar" hidden>
+              <button type="button" class="ios-btn" id="cancelEdit">Cancel</button>
+              <button type="submit" class="ios-btn primary"><i class="bi bi-check-lg"></i> Save changes</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- ============ GUEST CUSTOM DATA ============ -->
+        <section class="pf-panel" data-panel="guest-form" aria-labelledby="hGuest" hidden>
+          <h2 class="pf-h2" id="hGuest">Guest custom data</h2>
+          <p class="pf-lead">Fill this in before your child’s visit so our team can take the best care of them.</p>
+
+          <form id="guestDataForm" novalidate>
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>Child &amp; guardian</h2></div>
+              <div class="ios-list">
+                <label class="ios-row"><span>Customer name</span><input name="customerName" placeholder="Required"></label>
+                <label class="ios-row"><span>Customer’s D.O.B</span><input name="customerDob" type="date" min="2000-01-01"></label>
+                <label class="ios-row"><span>Guardian name</span><input name="guardianName" autocomplete="name" placeholder="Required"></label>
+                <label class="ios-row"><span>Mobile phone</span><input name="guardianMobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="04xx xxx xxx"></label>
+                <label class="ios-row"><span>Email</span><input name="guardianEmail" type="email" autocomplete="email" placeholder="you@example.com"></label>
+              </div>
+            </div>
+
+            <div class="ios-group">
+              <div class="ios-group-head"><h2>About today’s visit</h2></div>
+              <div class="ios-list">
+                <div class="q-row" data-q="voucher">
+                  <div class="q-top"><span>Do you have a gift voucher to use today?</span>
+                    <div class="pf-seg yn" role="radiogroup" data-seg="voucher"><button type="button" role="radio" data-v="yes">Yes</button><button type="button" role="radio" data-v="no">No</button></div>
+                  </div>
+                </div>
+                <label class="ios-row has-select"><span>Service today</span>
+                  <select name="service" id="serviceSelect" aria-label="Which service is your child having today?"><option value="">Choose a service</option></select>
+                </label>
+                <div class="q-row" data-q="hadBefore">
+                  <div class="q-top"><span>Has your child ever had this service before?</span>
+                    <div class="pf-seg yn" role="radiogroup" data-seg="hadBefore"><button type="button" role="radio" data-v="yes">Yes</button><button type="button" role="radio" data-v="no">No</button></div>
+                  </div>
+                  <div class="q-follow" data-follow="hadBefore" hidden>
+                    <label for="reaction">Did they have a reaction or experience any discomfort? Please explain</label>
+                    <textarea id="reaction" name="reaction" rows="3" placeholder="e.g. Itchy scalp after a braid…"></textarea>
+                  </div>
+                </div>
+                <div class="q-row" data-q="allergies">
+                  <div class="q-top"><span>Do they have any known allergies?</span>
+                    <div class="pf-seg yn" role="radiogroup" data-seg="allergies"><button type="button" role="radio" data-v="yes">Yes</button><button type="button" role="radio" data-v="no">No</button></div>
+                  </div>
+                  <div class="q-follow" data-follow="allergies" hidden>
+                    <label for="allergyList">Please list them all below</label>
+                    <textarea id="allergyList" name="allergyList" rows="3" placeholder="e.g. Nuts, latex, fragrance…"></textarea>
+                  </div>
+                </div>
+                <div class="q-row" data-q="swimming">
+                  <div class="q-top"><span>Have you been swimming in the last 6 months?</span>
+                    <div class="pf-seg yn" role="radiogroup" data-seg="swimming"><button type="button" role="radio" data-v="yes">Yes</button><button type="button" role="radio" data-v="no">No</button></div>
+                  </div>
+                </div>
+                <div class="q-row" data-q="photos">
+                  <div class="q-top"><span>Do you give consent for photos to be taken and used for marketing purposes?</span>
+                    <div class="pf-seg yn" role="radiogroup" data-seg="photos"><button type="button" role="radio" data-v="yes">Yes</button><button type="button" role="radio" data-v="no">No</button></div>
+                  </div>
+                </div>
+                <div class="q-row" data-q="parties">
+                  <div class="q-top"><span>Would you like some information on our parties?</span>
+                    <div class="pf-seg yn" role="radiogroup" data-seg="parties"><button type="button" role="radio" data-v="yes">Yes</button><button type="button" role="radio" data-v="no">No</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="pf-terms">
+              <h3><i class="bi bi-shield-check"></i> Terms and conditions</h3>
+              <p>Dream Cuts uses only high-quality products and takes all due care in performing these services. Dream Cuts cannot be held responsible for any adverse reactions which can occur as a result of the customer failing to inform our staff of a) any known allergies or b) reactions developed after a previous treatment/s.</p>
+              <p>Children with skin allergies or sensitive skin should have a patch test on the arm at least 24 hours prior to the service commencing. We will not apply any products to the face of a child who is or appears to be sick or suffering from cold sores, conjunctivitis, sunburn, eczema, any infectious skin condition or open wound.</p>
+            </div>
+
+            <div class="ios-group" id="sigGroup">
+              <div class="ios-group-head"><h2>Acknowledgement</h2><span class="ios-badge">Required</span></div>
+              <p class="pf-group-note" style="margin:-2px 4px 10px">Please sign below acknowledging that you have read and agree to the terms above.</p>
+              <div class="ios-list">
+                <label class="ios-row"><span>Patient name</span><input name="patientName" placeholder="Child’s name"></label>
+                <label class="ios-row"><span>Date</span><input name="signDate" type="date"></label>
+                <div class="sig-wrap">
+                  <div class="sig-head"><span>Signature of guardian</span><button type="button" class="co-edit" id="sigClear"><i class="bi bi-eraser"></i> Clear</button></div>
+                  <div class="sig-pad" id="sigPad"><canvas id="sigCanvas" aria-label="Signature pad"></canvas><span class="sig-hint">Sign here with your finger or mouse</span></div>
+                </div>
+              </div>
+            </div>
+
+            <p class="form-error" id="guestError" hidden></p>
+            <button type="submit" class="ios-btn primary block"><i class="bi bi-check2-circle"></i> Save guest form</button>
+            <p class="fine" id="guestSaved"></p>
+          </form>
+        </section>
+
+        <!-- ============ APPOINTMENTS ============ -->
+        <section class="pf-panel" data-panel="appointments" aria-labelledby="hAppt" hidden>
+          <h2 class="pf-h2" id="hAppt">Appointments</h2>
+          <div class="pf-seg pf-seg-wide" role="tablist" aria-label="Appointments" data-seg="appt">
+            <button type="button" role="tab" data-v="upcoming">Upcoming</button>
+            <button type="button" role="tab" data-v="past">Past</button>
+          </div>
+          <div class="pf-wait">
+            <i class="bi bi-telephone-inbound"></i>
+            <p>Join our waiting list — our team will call you very soon to arrange your booking.</p>
+            <button type="button" class="ios-btn" id="waitBtn"><i class="bi bi-hourglass-split"></i> Join waiting list</button>
+          </div>
+          <div id="apptList"></div>
+        </section>
+
+        <!-- ============ GIFT CARDS ============ -->
+        <section class="pf-panel" data-panel="gift-cards" aria-labelledby="hGift" hidden>
+          <h2 class="pf-h2" id="hGift">Gift cards</h2>
+          <div class="pf-seg pf-seg-wide" role="tablist" aria-label="Gift cards" data-seg="gift">
+            <button type="button" role="tab" data-v="cards">Your gift cards</button>
+            <button type="button" role="tab" data-v="history">Purchase history</button>
+            <button type="button" role="tab" data-v="tx">Transactions</button>
+          </div>
+
+          <div data-gift="cards">
+            <div class="pf-hello">
+              <span class="ic c-butter"><i class="bi bi-gift"></i></span>
+              <div><strong>Hey <span data-first>there</span>!</strong><span>Here’s the list of your gift cards.</span></div>
+            </div>
+            <div class="pf-balance">
+              <small>Current balance</small>
+              <div class="amt">$0.00</div>
+              <div class="meta"><span>0 services</span><span>0 packages</span></div>
+              <i class="bi bi-gift big-ic"></i>
+            </div>
+            <div class="pf-filters"><span><i class="bi bi-funnel"></i> Filters</span>
+              <div class="chip-scroll" data-chips>
+                <button type="button" class="cat-chip is-active">All</button>
+                <button type="button" class="cat-chip">Active</button>
+                <button type="button" class="cat-chip">Used</button>
+                <button type="button" class="cat-chip">Expired</button>
+              </div>
+            </div>
+            <div class="pf-card pf-empty">
+              <span class="ic c-butter"><i class="bi bi-credit-card-2-front"></i></span>
+              <h3>No cards to display</h3>
+              <p>Gift cards you buy or receive will appear here with their balance.</p>
+            </div>
+          </div>
+
+          <div data-gift="history" hidden>
+            <div class="pf-filters"><span><i class="bi bi-funnel"></i> Filters</span>
+              <div class="chip-scroll" data-chips>
+                <button type="button" class="cat-chip is-active">All</button>
+                <button type="button" class="cat-chip">Gift cards</button>
+                <button type="button" class="cat-chip">Packages</button>
+              </div>
+            </div>
+            <div class="pf-card pf-empty">
+              <span class="ic c-pink"><i class="bi bi-bag-heart"></i></span>
+              <h3>No purchases yet</h3>
+              <p>Gift cards and packages you buy will show up here.</p>
+            </div>
+          </div>
+
+          <div data-gift="tx" hidden>
+            <div class="pf-filters"><span><i class="bi bi-funnel"></i> Filters</span>
+              <div class="chip-scroll" data-chips>
+                <button type="button" class="cat-chip is-active">All</button>
+                <button type="button" class="cat-chip">Redeemed</button>
+                <button type="button" class="cat-chip">Top-ups</button>
+              </div>
+            </div>
+            <div class="pf-table-wrap">
+              <table class="pf-table">
+                <thead><tr><th>Gift card</th><th>Invoice</th><th>Amount</th></tr></thead>
+                <tbody><tr><td colspan="3" class="empty"><i class="bi bi-receipt"></i> No transactions done</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ LOYALTY ============ -->
+        <section class="pf-panel" data-panel="loyalty" aria-labelledby="hLoyal" hidden>
+          <h2 class="pf-h2" id="hLoyal">Loyalty points</h2>
+          <div class="pf-balance gold">
+            <small>Points balance</small>
+            <div class="amt">0<span>pts</span></div>
+            <div class="meta"><span>Worth $0.00</span></div>
+            <i class="bi bi-stars big-ic"></i>
+          </div>
+          <div class="ios-group-head"><h2>History</h2></div>
+          <div class="pf-table-wrap">
+            <table class="pf-table wide">
+              <thead><tr><th>Invoice number</th><th>Date</th><th>Points earned</th><th>Points redeemed</th><th>Expiry date</th></tr></thead>
+              <tbody><tr><td colspan="5" class="empty"><i class="bi bi-stars"></i> No points history yet</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js?v=17"></script>
+  <script src="js/site.js?v=4"></script>
+  <script src="js/profile.js?v=2"></script>
+</body>
+</html>

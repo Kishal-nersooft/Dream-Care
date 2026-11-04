@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8c6d5">
+  <title>Book Now | Dream Cuts — Westfield Marion</title>
+  <meta name="description" content="Book a kids haircut, braid, sensory cut or pamper at Dream Cuts, Westfield Marion.">
+  <link rel="icon" href="assets/img/logo-cloud.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=5">
+  <link rel="stylesheet" href="css/booking.css?v=4">
+</head>
+<body data-page="book" class="bk-body">
+  <a class="skip-link" href="#main">Skip to booking</a>
+  <header class="site-header">
+    <nav class="wrap nav-bar" aria-label="Main">
+      <a class="brand" href="index.html"><img src="assets/img/logo-cloud.png" alt="Dream Cuts kids salon"></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><i class="bi bi-list"></i></button>
+      <ul class="nav-links">
+          <li><a href="index.html" data-page="home">Home</a></li>
+          <li><a href="about.html" data-page="about">About Us</a></li>
+          <li><a href="services.html" data-page="services">Services</a></li>
+          <li><a href="beauticians.html" data-page="team">Beauticians</a></li>
+          <li><a href="parties.html" data-page="parties">Parties</a></li>
+          <li><a href="gift-cards.html" data-page="gifts">Gift Cards</a></li>
+          <li><a href="contact.html" data-page="contact">Contact</a></li>
+          <li class="nav-book"><a class="btn-book" href="booking.html" data-page="book"><i class="bi bi-calendar-heart"></i> Book Now</a></li>
+      </ul>
+      <button type="button" class="pill-btn nav-login" id="loginBtn"><i class="bi bi-person-circle"></i> <span>Log in</span></button>
+    </nav>
+  </header>
+
+  <main id="main" class="bk">
+    <div class="wrap bk-top">
+      <div class="bk-title-row">
+        <div>
+          <button type="button" class="bk-back" id="viewBack"><i class="bi bi-chevron-left"></i> <span>Back</span></button>
+          <h1 class="bk-title" id="viewTitle">Book a visit</h1>
+          <p class="bk-sub" id="viewSub">Dream Cuts · Westfield Marion</p>
+        </div>
+      </div>
+      <ol class="bk-progress" aria-label="Booking steps">
+        <li data-prog="services"><span></span>Services</li>
+        <li data-prog="checkout"><span></span>Checkout</li>
+        <li data-prog="payment"><span></span>Payment</li>
+      </ol>
+    </div>
+
+    <div class="wrap bk-layout">
+      <div class="bk-main">
+        <!-- VIEW: services -->
+        <section class="bk-view is-active" data-view="services" aria-label="Choose services">
+          <div class="guest-row">
+            <div class="guest-bar" id="guestBar" role="tablist" aria-label="Guests"></div>
+            <button type="button" class="guest-add" id="guestAdd" data-add-guest><i class="bi bi-person-plus"></i> Add guest</button>
+          </div>
+
+          <form class="ios-group guest-form" id="guestForm" hidden novalidate autocomplete="on">
+            <div class="ios-group-head">
+              <h2 id="guestFormTitle">Guest details</h2>
+              <span class="ios-badge" id="guestFormBadge">Required</span>
+            </div>
+            <div class="ios-list">
+              <label class="ios-row"><span>First name</span><input name="first_name" autocomplete="given-name" placeholder="Required"></label>
+              <label class="ios-row"><span>Last name</span><input name="last_name" autocomplete="family-name" placeholder="Required"></label>
+              <label class="ios-row"><span>Mobile</span><input name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="04xx xxx xxx"></label>
+              <label class="ios-row"><span>Date of birth</span><input name="dob" type="date" min="1990-01-01"></label>
+              <div class="ios-row ios-row-seg"><span>Gender</span>
+                <div class="seg" id="genderSeg" role="radiogroup" aria-label="Gender">
+                  <button type="button" role="radio" data-gender="girl">Girl</button>
+                  <button type="button" role="radio" data-gender="boy">Boy</button>
+                  <button type="button" role="radio" data-gender="unspecified">Other</button>
+                  <i class="seg-thumb"></i>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="basket" id="basket"></div>
+
+          <div class="catalog" id="catalog">
+            <h2 class="bk-h2" id="catalogTitle">Choose a service</h2>
+            <label class="ios-search">
+              <i class="bi bi-search"></i>
+              <input id="search" type="search" placeholder="Search cuts, braids, nails…" aria-label="Search services">
+            </label>
+            <div class="chip-scroll" id="chips" role="tablist" aria-label="Categories"></div>
+            <div id="popularWrap">
+              <h3 class="bk-h3">Popular right now</h3>
+              <div class="pop-scroll" id="popular"></div>
+            </div>
+            <h3 class="bk-h3" id="allTitle">All services</h3>
+            <div class="svc-rows" id="serviceList"></div>
+            <p class="bk-empty" id="emptyState" hidden><i class="bi bi-search-heart"></i> No services match that search. Try “braid” or “sensory”.</p>
+          </div>
+        </section>
+
+        <!-- VIEW: checkout -->
+        <section class="bk-view" data-view="checkout" aria-label="Checkout" hidden>
+          <div id="checkout"></div>
+        </section>
+
+        <!-- VIEW: payment -->
+        <section class="bk-view" data-view="payment" aria-label="Payment" hidden>
+          <div class="pay-wrap">
+            <div class="cc" id="ccPreview" aria-hidden="true">
+              <div class="cc-top"><img src="assets/img/logo-cloud.png" alt=""><i class="bi bi-wifi"></i></div>
+              <div class="cc-num" id="ccNum">•••• •••• •••• ••••</div>
+              <div class="cc-bottom">
+                <div><small>Card holder</small><span id="ccName">YOUR NAME</span></div>
+                <div><small>Expires</small><span id="ccExp">MM/YY</span></div>
+              </div>
+            </div>
+            <form id="payForm" class="ios-group" novalidate>
+              <div class="ios-list">
+                <label class="ios-row stack"><span>Name on card</span><input name="card_name" autocomplete="cc-name" placeholder="Jane Citizen"></label>
+                <label class="ios-row stack"><span>Card number</span><input name="card_number" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456" maxlength="19"></label>
+                <div class="ios-row-split">
+                  <label class="ios-row stack"><span>Expiry</span><input name="card_expiry" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY" maxlength="7"></label>
+                  <label class="ios-row stack"><span>CVC</span><input name="card_cvc" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4"></label>
+                </div>
+              </div>
+              <p class="form-error" id="payError" hidden></p>
+              <button type="submit" class="ios-btn primary block" id="payBtn">Pay</button>
+              <p class="fine"><i class="bi bi-lock-fill"></i> Demo gateway only. Nothing is charged.</p>
+            </form>
+          </div>
+        </section>
+
+        <!-- VIEW: success -->
+        <section class="bk-view" data-view="success" aria-label="Booking confirmed" hidden>
+          <div class="success-card">
+            <div class="success-burst"><svg viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-15"/></svg></div>
+            <h2>You’re booked in!</h2>
+            <p id="successText"></p>
+            <div id="successList"></div>
+            <div class="btn-row center">
+              <button type="button" class="ios-btn primary" id="bookAgain"><i class="bi bi-plus-lg"></i> Book another visit</button>
+              <a class="ios-btn" href="index.html">Back to home</a>
+            </div>
+            <p class="fine">Saved locally as a demo. Next step is wiring this into Odoo.</p>
+          </div>
+        </section>
+      </div>
+
+      <aside class="bk-side" aria-label="Booking summary">
+        <div class="side-card" id="sideCard"></div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Mobile bottom bar -->
+  <div class="bk-bar" id="bar">
+    <button type="button" class="bar-info" id="barInfo" aria-haspopup="dialog" aria-label="View your services">
+      <span class="bar-text"><small id="barCount">No services yet</small><strong id="barTotal">$0.00</strong></span>
+      <i class="bi bi-chevron-up bar-chev" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="ios-btn primary" id="barBtn" disabled>Continue</button>
+  </div>
+
+  <!-- Bottom sheet -->
+  <div class="sheet-backdrop" id="sheetBackdrop" hidden></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+    <div class="sheet-grab" id="sheetGrab"><span></span></div>
+    <div class="sheet-inner" id="sheetInner"></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/data.js?v=17"></script>
+  <script src="js/site.js?v=4"></script>
+  <script src="js/booking.js?v=4"></script>
+</body>
+</html>

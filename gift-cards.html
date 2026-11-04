@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#e8c6d5">
+  <title>Gift Cards | Dream Cuts — Westfield Marion</title>
+  <meta name="description" content="Give a Dream Cuts gift card. Choose an amount or a service, pick a design and add a personal message.">
+  <link rel="icon" href="assets/img/logo-cloud.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/site.css?v=5">
+  <link rel="stylesheet" href="css/gift-cards.css?v=4">
+</head>
+<body data-page="gifts">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="wrap nav-bar" aria-label="Main">
+      <a class="brand" href="index.html"><img src="assets/img/logo-cloud.png" alt="Dream Cuts kids salon"></a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"><i class="bi bi-list"></i></button>
+      <ul class="nav-links">
+          <li><a href="index.html" data-page="home">Home</a></li>
+          <li><a href="about.html" data-page="about">About Us</a></li>
+          <li><a href="services.html" data-page="services">Services</a></li>
+          <li><a href="beauticians.html" data-page="team">Beauticians</a></li>
+          <li><a href="parties.html" data-page="parties">Parties</a></li>
+          <li><a href="gift-cards.html" data-page="gifts">Gift Cards</a></li>
+          <li><a href="contact.html" data-page="contact">Contact</a></li>
+          <li class="nav-book"><a class="btn-book" href="booking.html"><i class="bi bi-calendar-heart"></i> Book Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="page-hero gc-hero">
+      <div class="wrap">
+        <h1>Give a little sparkle</h1>
+        <p>Treat someone to a dreamy visit.</p>
+      </div>
+      <svg class="cloud-edge" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path fill="currentColor" d="M0,48 C180,80 360,8 540,32 C720,56 900,8 1080,36 C1260,64 1380,24 1440,16 L1440,80 L0,80 Z"></path></svg>
+    </section>
+
+    <section class="section gc-section">
+      <div class="wrap gc-layout">
+        <form class="gc-form" id="gcForm" novalidate autocomplete="on">
+
+          <!-- Location -->
+          <div class="gc-loc">
+            <span class="gc-loc-ic"><i class="bi bi-shop"></i></span>
+            <div>
+              <small>Redeemable at</small>
+              <strong id="gcLocName">Dream Cuts Marion</strong>
+              <span id="gcLocAddr">Westfield Marion</span>
+            </div>
+          </div>
+
+          <!-- Mobile only: the live preview is moved here by gift-cards.js -->
+          <div class="gc-mslot" id="gcMSlot"></div>
+
+          <!-- Step 1: what to gift -->
+          <fieldset class="gc-step">
+            <legend><span class="gc-num">1</span> I would like to gift</legend>
+            <div class="gc-seg" role="tablist" aria-label="Gift card type">
+              <button type="button" role="tab" id="tabAmount" aria-controls="panelAmount" aria-selected="true" data-type="amount"><i class="bi bi-cash-coin"></i> An amount</button>
+              <button type="button" role="tab" id="tabService" aria-controls="panelService" aria-selected="false" data-type="service"><i class="bi bi-scissors"></i> A service</button>
+            </div>
+
+            <div class="gc-panel" id="panelAmount" role="tabpanel" aria-labelledby="tabAmount">
+              <h3 class="gc-h3">Select an amount</h3>
+              <div class="gc-amounts" id="gcAmounts"></div>
+              <label class="gc-custom" id="gcCustomWrap">
+                <span>Or choose a custom amount</span>
+                <span class="gc-money"><b>$</b><input id="gcCustom" type="number" inputmode="decimal" min="10" max="500" step="1" placeholder="10 – 500"></span>
+              </label>
+              <p class="gc-err" id="errAmount" hidden></p>
+            </div>
+
+            <div class="gc-panel" id="panelService" role="tabpanel" aria-labelledby="tabService" hidden>
+              <h3 class="gc-h3">Select a category</h3>
+              <div class="gc-chips" id="gcCats"></div>
+              <div class="gc-svcs" id="gcServices" role="radiogroup" aria-label="Services"></div>
+              <p class="gc-err" id="errService" hidden></p>
+            </div>
+          </fieldset>
+
+          <!-- Step 2: design -->
+          <fieldset class="gc-step">
+            <legend><span class="gc-num">2</span> Choose a design</legend>
+            <div class="gc-designs" id="gcDesigns" role="radiogroup" aria-label="Card design"></div>
+          </fieldset>
+
+          <!-- Step 3: personalise -->
+          <fieldset class="gc-step">
+            <legend><span class="gc-num">3</span> Personalise it</legend>
+            <div class="form">
+              <div class="form-row">
+                <div>
+                  <label for="gcTo">To</label>
+                  <input id="gcTo" name="to" maxlength="30" placeholder="e.g. Isla" required>
+                </div>
+                <div>
+                  <label for="gcFrom">From</label>
+                  <input id="gcFrom" name="from" maxlength="30" placeholder="e.g. Aunty Sam" autocomplete="name" required>
+                </div>
+              </div>
+              <div>
+                <label for="gcMsg">Message <span class="gc-opt">(optional)</span></label>
+                <textarea id="gcMsg" name="message" rows="3" maxlength="160" placeholder="Happy birthday! Enjoy a dreamy pamper day 💖"></textarea>
+                <div class="gc-msg-foot">
+                  <div class="gc-ideas" id="gcIdeas" aria-label="Message ideas"></div>
+                  <small class="gc-count"><span id="gcMsgCount">0</span>/160</small>
+                </div>
+              </div>
+            </div>
+            <p class="gc-err" id="errNames" hidden></p>
+          </fieldset>
+
+          <!-- Step 4: delivery -->
+          <fieldset class="gc-step">
+            <legend><span class="gc-num">4</span> Delivery</legend>
+            <div class="gc-deliver" role="radiogroup" aria-label="Delivery method">
+              <label class="gc-opt-card"><input type="radio" name="deliver" value="recipient" checked><span><i class="bi bi-envelope-heart"></i><b>Email the recipient</b><small>We’ll send it straight to them</small></span></label>
+              <label class="gc-opt-card"><input type="radio" name="deliver" value="me"><span><i class="bi bi-printer"></i><b>Send it to me</b><small>Print it or give it in person</small></span></label>
+            </div>
+            <div class="form gc-deliver-fields">
+              <div class="form-row">
+                <div id="recipientEmailWrap">
+                  <label for="gcToEmail">Recipient’s email</label>
+                  <input id="gcToEmail" name="to_email" type="email" placeholder="them@example.com">
+                </div>
+                <div>
+                  <label for="gcFromEmail">Your email</label>
+                  <input id="gcFromEmail" name="from_email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div>
+                  <label for="gcDate">Send on</label>
+                  <input id="gcDate" name="send_date" type="date">
+                </div>
+              </div>
+            </div>
+            <p class="gc-err" id="errDelivery" hidden></p>
+          </fieldset>
+        </form>
+
+        <!-- Live preview + summary -->
+        <aside class="gc-side" aria-label="Gift card preview">
+          <div class="gc-side-card">
+            <div class="gc-preview-block" id="gcPreviewBlock">
+            <div class="gc-side-head">
+              <h2>Preview</h2>
+              <span class="gc-type-tag" id="gcTypeTag">Amount gift card</span>
+            </div>
+            <div class="gcard" id="gcPreview" data-design="pink"></div>
+            <button type="button" class="gc-view" id="gcViewBtn"><i class="bi bi-arrows-fullscreen"></i> View your gift card</button>
+            </div>
+            <dl class="gc-summary">
+              <div><dt>Gift</dt><dd id="sumGift">—</dd></div>
+              <div><dt>To</dt><dd id="sumTo">—</dd></div>
+              <div><dt>From</dt><dd id="sumFrom">—</dd></div>
+              <div><dt>Delivery</dt><dd id="sumDeliver">—</dd></div>
+            </dl>
+            <div class="gc-total"><span>Total</span><strong id="sumTotal">$0.00</strong></div>
+            <button type="button" class="btn btn-primary gc-buy" id="gcBuy"><i class="bi bi-bag-heart"></i> Buy gift card</button>
+            <p class="gc-fine"><i class="bi bi-shield-check"></i> Valid for 3 years. Redeemable in salon.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section tint">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="kicker">Good to know</span>
+          <h2>How gift cards work</h2>
+        </div>
+        <div class="grid grid-3">
+          <div class="card feature reveal"><span class="ic c-pink"><i class="bi bi-envelope-paper-heart"></i></span><h3>Instant or scheduled</h3><p>Send it now or pick a date, like the morning of their birthday.</p></div>
+          <div class="card feature reveal"><span class="ic c-sky"><i class="bi bi-upc-scan"></i></span><h3>Easy to redeem</h3><p>Show the code at the counter or enter it when you book online.</p></div>
+          <div class="card feature reveal"><span class="ic c-butter"><i class="bi bi-hourglass-split"></i></span><h3>Valid for 3 years</h3><p>Amount cards can be used across visits until the balance runs out.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile bottom bar -->
+  <div class="gc-bar" id="gcBar">
+    <button type="button" class="gc-bar-thumb" id="barThumb" aria-label="View your gift card"><span class="gcard" id="barCard" data-design="pink"></span></button>
+    <div class="gc-bar-text"><small id="barLabel">Gift card</small><strong id="barTotal">$0.00</strong></div>
+    <button type="button" class="btn btn-primary" id="barBuy">Buy</button>
+  </div>
+
+  <!-- Full-size preview -->
+  <dialog class="gc-dialog" id="viewDlg" aria-labelledby="viewTitle">
+    <div class="gc-dlg-head"><h2 id="viewTitle">Your gift card</h2><button type="button" class="gc-x" data-close aria-label="Close"><i class="bi bi-x-lg"></i></button></div>
+    <div class="gc-flip" id="gcFlip">
+      <div class="gc-flip-inner">
+        <div class="gcard gc-face" id="gcBig"></div>
+        <div class="gc-face gc-back" id="gcBack"></div>
+      </div>
+    </div>
+    <button type="button" class="gc-view" id="gcFlipBtn"><i class="bi bi-arrow-repeat"></i> Flip card</button>
+  </dialog>
+
+  <!-- Checkout -->
+  <dialog class="gc-dialog" id="payDlg" aria-labelledby="payTitle">
+    <div class="gc-dlg-head"><h2 id="payTitle">Checkout</h2><button type="button" class="gc-x" data-close aria-label="Close"><i class="bi bi-x-lg"></i></button></div>
+    <div id="payView">
+      <div class="gc-pay-sum" id="paySum"></div>
+      <form class="form" id="payForm" novalidate>
+        <div><label for="cardName">Name on card</label><input id="cardName" autocomplete="cc-name" placeholder="Jane Citizen" required></div>
+        <div><label for="cardNum">Card number</label><input id="cardNum" inputmode="numeric" autocomplete="cc-number" placeholder="1234 5678 9012 3456" maxlength="19" required></div>
+        <div class="form-row">
+          <div><label for="cardExp">Expiry</label><input id="cardExp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM / YY" maxlength="7" required></div>
+          <div><label for="cardCvc">CVC</label><input id="cardCvc" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4" required></div>
+        </div>
+        <p class="gc-err" id="errPay" hidden></p>
+        <button type="submit" class="btn btn-primary gc-buy" id="payBtn">Pay</button>
+        <p class="gc-fine"><i class="bi bi-lock-fill"></i> Demo gateway only. Nothing is charged.</p>
+      </form>
+    </div>
+    <div id="doneView" class="gc-done" hidden>
+      <div class="gc-done-ic"><i class="bi bi-gift-fill"></i></div>
+      <h3>Gift card on its way!</h3>
+      <p id="doneText"></p>
+      <div class="gc-code"><small>Gift card code</small><strong id="doneCode"></strong></div>
+      <div class="btn-row center">
+        <button type="button" class="btn btn-primary" id="doneAgain"><i class="bi bi-plus-lg"></i> Send another</button>
+        <a class="btn btn-light" href="index.html">Back to home</a>
+      </div>
+      <p class="gc-fine">Saved locally as a demo. Next step is wiring this into Odoo.</p>
+    </div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="logo" src="assets/img/logo-cloud.png" alt="Dream Cuts">
+        <p>Adelaide’s happiest kids salon. Fun for the kids, zero stress for Mum and Dad.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/dreamcutsau/" target="_blank" rel="noopener" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.facebook.com/dreamcutsau" target="_blank" rel="noopener" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.pinterest.com/dreamcutsau/" target="_blank" rel="noopener" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="services.html">Services &amp; prices</a></li>
+          <li><a href="beauticians.html">Our beauticians</a></li>
+          <li><a href="parties.html">Birthday parties</a></li>
+          <li><a href="gift-cards.html">Gift cards</a></li>
+          <li><a href="contact.html">Contact &amp; FAQ</a></li>
+          <li><a href="booking.html">Book now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Visit us</h3>
+        <p>Shop 1120 (opposite Balfours Kiosk)<br>Westfield Marion<br>297 Diagonal Road<br>Oaklands Park SA 5046</p>
+        <p><a href="tel:0406020886"><i class="bi bi-telephone"></i> 0406 020 886</a><br>
+        <a href="mailto:enquiries@dreamcuts.com.au"><i class="bi bi-envelope"></i> enquiries@dreamcuts.com.au</a></p>
+      </div>
+      <div>
+        <h3>Opening hours</h3>
+        <ul class="hours" data-hours></ul>
+      </div>
+    </div>
+    <div class="wrap footer-bottom">
+      <span>© <span data-year></span> Dream Cuts. All rights reserved.</span>
+      <span>Made with 💖 for little ones</span>
+    </div>
+  </footer>
+
+  <script src="js/data.js?v=17"></script>
+  <script src="js/site.js?v=4"></script>
+  <script src="js/gift-cards.js?v=2"></script>
+</body>
+</html>
